@@ -1,0 +1,38 @@
+!SESSION 2026-01-22 09:58:09.206 -----------------------------------------------
+eclipse.buildId=unknown
+java.version=21.0.8
+java.vendor=Eclipse Adoptium
+BootLoader constants: OS=win32, ARCH=x86_64, WS=win32, NL=ko
+Framework arguments:  -eclipse.keyring C:\Users\adminn\AppData\Roaming\DBeaverData\secure\secure_storage -nosplash
+Command-line arguments:  -os win32 -ws win32 -arch x86_64 -data C:\study\2.Database -eclipse.keyring C:\Users\adminn\AppData\Roaming\DBeaverData\secure\secure_storage -nosplash
+
+!ENTRY org.eclipse.ui 2 2 2026-01-22 09:58:12.919
+!MESSAGE Invalid preference category path: org.eclipse.debug.ui.ConsolePreferencePage (bundle: org.eclipse.ui.console, page: org.eclipse.ui.internal.console.ansi.preferences.AnsiConsolePreferencePage)
+
+!ENTRY org.jkiss.dbeaver.model 2 0 2026-01-22 09:59:10.375
+!MESSAGE Can't load driver properties
+!SUBENTRY 1 org.jkiss.dbeaver.model 2 0 2026-01-22 09:59:10.375
+!MESSAGE Error creating driver 'MySQL' instance.
+Most likely required jar files are missing.
+You should configure jars in driver settings.
+
+Reason: can't load driver class 'com.mysql.cj.jdbc.Driver'
+!SUBENTRY 2 org.jkiss.dbeaver.model 2 0 2026-01-22 09:59:10.375
+!MESSAGE Class not found: com.mysql.cj.jdbc.Driver
+!STACK 0
+java.lang.ClassNotFoundException: com.mysql.cj.jdbc.Driver
+	at java.base/java.net.URLClassLoader.findClass(URLClassLoader.java:445)
+	at java.base/java.lang.ClassLoader.loadClass(ClassLoader.java:593)
+	at java.base/java.lang.ClassLoader.loadClass(ClassLoader.java:526)
+	at java.base/java.lang.Class.forName0(Native Method)
+	at java.base/java.lang.Class.forName(Class.java:534)
+	at java.base/java.lang.Class.forName(Class.java:513)
+	at org.jkiss.dbeaver.registry.driver.DriverLoaderDescriptor.loadDriver(DriverLoaderDescriptor.java:175)
+	at org.jkiss.dbeaver.registry.driver.DriverLoaderDescriptor.loadDriver(DriverLoaderDescriptor.java:152)
+	at org.jkiss.dbeaver.registry.driver.DriverLoaderDescriptor.getDriverInstance(DriverLoaderDescriptor.java:120)
+	at org.jkiss.dbeaver.model.impl.jdbc.JDBCDataSourceProvider.getConnectionProperties(JDBCDataSourceProvider.java:64)
+	at org.jkiss.dbeaver.ui.dialogs.connection.ConnectionPropertiesControl.loadDriverProperties(ConnectionPropertiesControl.java:168)
+	at org.jkiss.dbeaver.ui.dialogs.connection.ConnectionPropertiesControl.makeProperties(ConnectionPropertiesControl.java:84)
+	at org.jkiss.dbeaver.ui.dialogs.connection.DriverPropertiesDialogPage.lambda$0(DriverPropertiesDialogPage.java:90)
+	at org.jkiss.dbeaver.runtime.RunnableContextDelegate.lambda$0(RunnableContextDelegate.java:39)
+	at org.eclipse.jface.operation.ModalContext$ModalContextThread.run(ModalContext.java:123)
