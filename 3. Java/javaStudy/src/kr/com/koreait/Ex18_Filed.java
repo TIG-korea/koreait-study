@@ -30,14 +30,14 @@ public class Ex18_Filed {
 //		jjanggu.phone = "010-1234-5678";
 		jjanggu.introduce(); // 호출
 //		
-		Ex18_2_Person minsu = new Ex18_2_Person("민수", 24);
+		Ex18_2_Person minsu = new Ex18_2_Person("민수",24);
 //		minsu.name = "민수";
 //		minsu.age = 24;
 //		minsu.addr = "서울";
 //		minsu.phone = "010-7777-5678";
 		minsu.introduce();
 
-		Ex18_2_Person hong = new Ex18_2_Person("홍길동", 222);
+		Ex18_2_Person hong = new Ex18_2_Person("홍길동");
 		hong.introduce();
 //		System.out.println(Ex18_2_Person.HOBBY);
 
