@@ -34,7 +34,7 @@ public class Ex23_Ploy {
 		
 		cr.allPowerOn();
 		
-		
+		//VTable = 가상 메서드 테이블 
 	
 	}
 
