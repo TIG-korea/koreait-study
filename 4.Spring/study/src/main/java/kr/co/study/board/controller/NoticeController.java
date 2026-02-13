@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import jakarta.servlet.http.HttpSession;
 import kr.co.study.board.dto.ReqBoardDTO;
 import kr.co.study.board.dto.ResBoardDTO;
+import kr.co.study.board.entity.Board;
 import kr.co.study.board.service.BoardService;
 import kr.co.study.member.dto.ResLoginDTO;
 import lombok.RequiredArgsConstructor;
@@ -98,8 +99,56 @@ public class NoticeController {
 		
 		// 4. 목록으로 이동
 		return"redirect:/board/notice";
+
+	}
+	/**
+	 * 공지사항 수정 페이지로 이동하는 메서드입니다.
+	 */
+	@GetMapping("/edit/form")
+	public String editForm(@RequestParam(name="id") Long id , Model model) {
+		ResBoardDTO response = boardService.getBoardDetailEdit(id);
+		model.addAttribute("notice", response);
+		
+		return "pages/board/notice-edit";}
+	
+	
+	
+	
+	@PostMapping("/edit")
+	public String edit(ReqBoardDTO request, HttpSession session) {
+		// 1. 로그인한 사용자 조회
+		ResLoginDTO loginUser = (ResLoginDTO) session.getAttribute("LOGIN_USER");
+		
+		// 2. 로그인하지 않은 사용자는 수정 불가
+		if (loginUser == null) {
+			return "redirect:/member/login/form";
+		}
+		
+		
+		// 3. 게시글 수정 진행
+		boardService.edit(request, loginUser.getId());
+		
+		return "redirect:/board/notice/detail?id=" + request.getId();
+	}
+	
+	
+	@GetMapping("/delete")
+	public String delete(@RequestParam(name="id") Long id,
+						   HttpSession session) {
+		// 1. 로그인 사용자 정보 조회 
+		ResLoginDTO loginUser = (ResLoginDTO)session.getAttribute("LOGIN_USER");
+		// 2. 비로그인 상태면 삭제 불가
+		if (loginUser == null) 
+			return "rediret:/member/login/form";   // if문 한줄이면 {} 생략가능 
+		
+		// 3. 삭제 실행
+		boardService.delete(id, loginUser.getId());
+		return "redirect:/board/notice";	
 	}
 	
 	
 	
 }
+	
+	
+

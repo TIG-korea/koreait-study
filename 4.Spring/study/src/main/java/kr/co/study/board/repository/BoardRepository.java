@@ -15,7 +15,7 @@ public interface BoardRepository extends JpaRepository<Board, Long>{
 	/**
 	 * 전체 게시글을 조회하는 추상 메서드
 	 * - findByBoardType : boardType이 일치하는 게시글을 찾겠다.
-	 * - OrderByIdDesc : id 컬렁믕ㄹ 기준으로 내림차순을 하겠다.
+	 * - OrderByIdDesc : id 컬럼을  기준으로 내림차순을 하겠다.
 	 * - 완성되는 쿼리 : SELECT * FROM board
 	 * 				WHERE board_type = "매개변수로 들어온 값"  (boardType)
 	 * 				ORDER BY ID DESC

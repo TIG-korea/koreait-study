@@ -57,10 +57,15 @@
         <div class="modal-content">
             <h2 style="margin-bottom: 1.5rem;">게시글 삭제</h2>
             <p style="margin-bottom: 2rem; color: var(--text-secondary);">정말 이 게시글을 삭제하시겠습니까? 이 작업은 되돌릴 수 없습니다.</p>
+            
+          <form action="'/board/notice/delete?id=' + ${notice.id}">
             <div class="form-actions">
-                <button class="btn btn-primary" onclick="confirmDelete()" style="background-color: var(--error);">삭제</button>
-                <button class="btn btn-secondary" onclick="closeDeleteModal()">취소</button>
+                <button type="submit" class="btn btn-primary" onclick="confirmDelete()"
+                		 style="background-color: var(--error);">삭제</button>
+                <button type="button" class="btn btn-secondary" onclick="closeDeleteModal()">취소</button>
             </div>
+       	 </form>
+            
         </div>
     </div>
 

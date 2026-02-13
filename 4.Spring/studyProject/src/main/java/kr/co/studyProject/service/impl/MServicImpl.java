@@ -67,7 +67,7 @@ public class MServicImpl implements MServic{
 		
 		ResLoginDTO response = ResLoginDTO.builder()
 								.email(member.getEmail())
-//								.password(member.getPassword())
+								.id(member.getId())
 								.build();
 		return response;
 	}
