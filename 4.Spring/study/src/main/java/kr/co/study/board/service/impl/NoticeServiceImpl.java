@@ -10,11 +10,14 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
-import com.korea.study.StudyApplication;
+import org.springframework.web.multipart.MultipartFile;
+
 import kr.co.study.board.dto.ReqBoardDTO;
 import kr.co.study.board.dto.ResBoardDTO;
+import kr.co.study.board.dto.ResBoardFileDTO;
 import kr.co.study.board.entity.Board;
 import kr.co.study.board.repository.BoardRepository;
+import kr.co.study.board.service.BoardFileService;
 import kr.co.study.board.service.BoardService;
 import kr.co.study.member.entity.Member;
 import kr.co.study.member.repository.MemberRepository;
@@ -23,11 +26,9 @@ import lombok.RequiredArgsConstructor;
 @Service
 @RequiredArgsConstructor
 public class NoticeServiceImpl implements BoardService {
-
- 
- 
-	private final BoardRepository boardRepository;
-	private final MemberRepository memberRepository;
+	private final BoardRepository boardRepository;  // 게시판 DB접근
+	private final MemberRepository memberRepository; // 작성자 조회용 
+	private final  BoardFileService boardFileService; // 파일 전용(추가/수정/삭제)
 
 //    NoticeServiceImpl(StudyApplication studyApplication) {
 //        this.studyApplication = studyApplication;
@@ -36,7 +37,8 @@ public class NoticeServiceImpl implements BoardService {
 
 
 	@Override
-	public void write(ReqBoardDTO request, Long writerId) {
+	@Transactional
+	public void write(ReqBoardDTO request, List<MultipartFile> files, Long writerId) {
 		// 1. 작성자 조회
 		Member writer = memberRepository.findById(writerId).orElse(null);
 
@@ -52,8 +54,11 @@ public class NoticeServiceImpl implements BoardService {
 		board.setWriter(writer);
 		board.setViewCount(0);
 
+		// 3. DB 저장
 		boardRepository.save(board);
 
+		// 4. 파일 저장 및 DB에 파일 정보 저장
+		boardFileService.saveFiles(board, files);
 	}
 
 	@Override
@@ -111,7 +116,10 @@ public class NoticeServiceImpl implements BoardService {
 		// - JPA 더티체킹으로 인해 update 자동 반영
 		board.setViewCount(board.getViewCount() + 1);
 		
-		// 3. 응답 DTO 변환	@Setter 대신에 	@Build 사용      . 하나 하나가 setter 
+		// 3. 첨부 파일 조회
+		List<ResBoardFileDTO> files = boardFileService.getFiles(board.getId());
+		
+		// 4. 응답 DTO 변환	@Setter 대신에 	@Build 사용      . 하나 하나가 setter 
 		ResBoardDTO response = ResBoardDTO.builder()
 								.id(board.getId())
 								.title(board.getTitle())
@@ -119,6 +127,7 @@ public class NoticeServiceImpl implements BoardService {
 								.writerName(board.getWriter().getUserName())
 								.createdAt(board.getCreatedAt())
 								.viewCount(board.getViewCount())
+								.files(files)
 								.build();
 		return response;
 	}
@@ -133,6 +142,7 @@ public class NoticeServiceImpl implements BoardService {
 		// 1. 게시글 조회
 		Board board = boardRepository.findById(id).orElse(null);
 		
+	
 		ResBoardDTO response = ResBoardDTO.builder()
 								.id(board.getId())
 								.title(board.getTitle())
@@ -143,9 +153,15 @@ public class NoticeServiceImpl implements BoardService {
 								.build();
 		return response;
 }
+	
+	
+	
+	
+	
+	
 	@Override
 	@Transactional
-	public void edit(ReqBoardDTO request, Long id) {
+	public void edit(ReqBoardDTO request,List<MultipartFile> files, Long id) {
 		
 		// 1. 기존 게시글이 존재하는지 조회
 		Board board = boardRepository.findById(request.getId()).orElse(null);
@@ -160,6 +176,9 @@ public class NoticeServiceImpl implements BoardService {
 		board.setCategory(request.getCategory());
 		board.setTitle(request.getTitle());
 		board.setContent(request.getContent());
+		
+		
+		boardFileService.replaceFiles(board, files);
 	}
 	
 	
@@ -176,7 +195,10 @@ public class NoticeServiceImpl implements BoardService {
 		} else if (!board.getWriter().getId().equals(loginUserid)) {
 			System.out.println("삭제 권한이 없습니다.");
 		}
-		// 3. 삭제 처리  
+		// 3. 파일 삭제 (로컬 + DB)
+		boardFileService.deleteFiles(board.getId());
+		
+		// 4. 삭제 처리  
 		boardRepository.delete(board);  
 	}
 	

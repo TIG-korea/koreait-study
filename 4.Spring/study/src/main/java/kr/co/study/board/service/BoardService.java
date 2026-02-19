@@ -1,7 +1,10 @@
 package kr.co.study.board.service;
 
+import java.util.List;
+
 import org.springframework.data.domain.Page;
 import org.springframework.ui.Model;
+import org.springframework.web.multipart.MultipartFile;
 
 import kr.co.study.board.dto.ReqBoardDTO;
 import kr.co.study.board.dto.ResBoardDTO;
@@ -25,7 +28,7 @@ public interface BoardService {
 	 * @param request 사용자가 입력한 글쓰기 데이터
 	 * @param writerId 로그인한 회원의 ID   
 	 */
-	void write(ReqBoardDTO request, Long writerId);
+	void write(ReqBoardDTO request, List<MultipartFile> files, Long writerId);
 	
 	/**
 	 * 게시글 리스트 조회 기능
@@ -54,7 +57,7 @@ public interface BoardService {
 	 *  * @param request
 	 * @param id
 	 */
-	void edit(ReqBoardDTO request, Long id);
+	void edit(ReqBoardDTO request,List<MultipartFile> files, Long id);
 	
 	/**
 	 * 게시글 삭제 기능

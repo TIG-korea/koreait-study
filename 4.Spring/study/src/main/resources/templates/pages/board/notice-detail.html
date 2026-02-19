@@ -31,7 +31,12 @@
                 </div>
             </div>
 
-            <div id="detailImage" style="margin: 2rem 0;"></div>
+            <div id="detailImage" style="margin: 2rem 0;">
+           		 <div th:each="file : ${notice.files}">
+            		<img th:src="${file.filePath}">
+              </div>
+        </div>
+            
             
             <div id="detailContent" class="detail-content" th:utext="${notice.content}">
                 <!-- 상세 내용 -->
