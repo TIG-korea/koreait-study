@@ -10,13 +10,13 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
-
+ 
 import jakarta.servlet.http.HttpSession;
 import kr.co.restStudy.board.dto.ReqBoardDTO;
 import kr.co.restStudy.board.dto.ResBoardDTO;
 import kr.co.restStudy.board.service.BoardService;
 import kr.co.restStudy.member.dto.ResLoginDTO;
-import lombok.RequiredArgsConstructor;
+import lombok.RequiredArgsConstructor; 
 
 @Controller  // (생성 안하면 빈 생성 안함)
 @RequestMapping("/board/notice")
