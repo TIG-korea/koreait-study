@@ -1,12 +1,12 @@
 
+// Hook: 함수형 컴포넌트에서 React의 상태, 생명주기, 로직을 사용할 수 있는 API((가져다가 쓸 수 있는)함수)
+// - React Hook : 리액트에서 미리 만들어진 함수 (Hook)
+//      > ex) useState, useQuery, useMutation, ...
 import { useNavigate } from "react-router-dom";
 import {useNoticeListQuery} from "../query/NoticeListQuery"
 import { useMemo,useState } from "react";
 
 
-// Hook: 함수형 컴포넌트에서 React의 상태, 생명주기, 로직을 사용할 수 있는 API((가져다가 쓸 수 있는)함수)
-// - React Hook : 리액트에서 미리 만들어진 함수 (Hook)
-//      > ex) useState, useQuery, useMutation, ...
 // - 커스텀 Hook : 개발자가 직접 만든 함수 (Hook)
 export const useNoticeListHook = () => {
     const navigate = useNavigate();

@@ -5,6 +5,7 @@ import java.util.List;
 import org.springframework.data.domain.Page;
 import org.springframework.http.ResponseEntity;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -22,7 +23,8 @@ import lombok.RequiredArgsConstructor;
 
 @RestController  // (생성 안하면 빈 생성 안함)
 @RequestMapping("/api/board/notice")
-@RequiredArgsConstructor
+@RequiredArgsConstructor 
+
 public class NoticeController {
 	private final BoardService boardService;
 
@@ -60,29 +62,29 @@ public class NoticeController {
 	
 	
 
-	@PostMapping("/create")
-	public String create(ReqBoardDTO request, HttpSession session,
+	@PostMapping
+	public ResponseEntity<String> create(ReqBoardDTO request, HttpSession session,
 						@RequestParam(value = "files", required = false) List<MultipartFile> files) {
 		// 1. 로그인한 사용자 정보 세션에서 꺼내기
 		ResLoginDTO loginUser = (ResLoginDTO) session.getAttribute("LOGIN_USER");
 		
 		// 2. 로그인한 사용자가 아니라면 로그인 페이지로 이동
 		if (loginUser == null) {
-			return "redirect:/member/login/form";
+			return ResponseEntity.notFound().build();
 		}
 		
 		// 3. 게시글 저장    
 		boardService.write(request, files, loginUser.getId());
 		
 		// 4. 목록으로 이동
-		return"redirect:/board/notice";
+		return ResponseEntity.ok("성공");
 
 	}
 	/**
 	 * 공지사항 수정 페이지로 이동하는 메서드입니다.
 	 */
 	@GetMapping("/edit/form")
-	public String editForm(@RequestParam(name="id") Long id , Model model) {
+	public String editForm(@RequestParam (name="id") Long id , Model model) {
 		ResBoardDTO response = boardService.getBoardDetailEdit(id);
 		model.addAttribute("notice", response);
 		
@@ -110,18 +112,18 @@ public class NoticeController {
 	}
 	
 	
-	@GetMapping("{postId}")
-	public String delete(@RequestParam(name="id") Long id,
+	@DeleteMapping("/{id}")
+	public ResponseEntity<String> delete(@PathVariable("id") Long id,
 						   HttpSession session) {
 		// 1. 로그인 사용자 정보 조회 
 		ResLoginDTO loginUser = (ResLoginDTO)session.getAttribute("LOGIN_USER");
 		// 2. 비로그인 상태면 삭제 불가
 		if (loginUser == null) 
-			return "rediret:/member/login/form";   // if문 한줄이면 {} 생략가능 
+			return ResponseEntity.notFound().build();   // if문 한줄이면 {} 생략가능 
 		
 		// 3. 삭제 실행
 		boardService.delete(id, loginUser.getId());
-		return "redirect:/board/notice";	
+		return ResponseEntity.ok("성공");	
 	}
 	
 	

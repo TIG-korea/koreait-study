@@ -93,8 +93,8 @@ export default function NoticeDetail() {
                         {isWriterCheck &&(
                             <div className="detail-actions">
                             <button
-                                onclick={goToEdit}
-                                href="announcement-edit.html"
+                                onClick={goToEdit}
+                                type="button"
                                 className="btn btn-secondary"
                                 style={{ textDecoration: "none" }}
                             >

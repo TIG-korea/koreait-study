@@ -41,16 +41,46 @@ export const NoticeDetailApi = async (postId) => {
 
 // 공지사항 삭제
 export const noticeDeleteApi = async (postId) =>{
-    try{
-        const deletepost = await axiosInstance.get(`/api/board/notice/${postId}`,{
-            withCredentials: true
-        })
-        return response.data;
+    const response = await axiosInstance.delete(`/api/board/notice/${postId}`,{
+        withCredentials: true
+    });
 
-    }catch(err){
-        if(err.response){
-            console.log('응답 데이터: ', err.message);
-            throw err;
-        }
-    }
+    return response.data;
+
+
+
+    // try{
+
+    // }catch(err){
+    //     if(err.response){
+    //         console.log('응답 데이터: ', err.message);
+    //         throw err;
+    //     }
+    // }
 }
+
+
+export const noticeCreateApi = async (formData) => {
+    const response = await axiosInstance.post("/api/board/notice",
+                                                formData,{
+                                                    withCredentials : true,
+                                                    headers: {
+                                                        "Content-Type": "multipart/form-data"
+                                                    }
+
+                                                }
+    )
+    return response.data;
+}
+
+
+export const noticeEditApi = async(postId, formData) =>{
+    const response = await axiosInstance.post(`/api/board/notice/${postId}/edit`, formData, {
+        withCredentials: true,
+        headers: {
+            "Content-Type": "multipart/form-data"
+        }
+    });
+    return response.data;
+}
+

@@ -2,8 +2,10 @@ import { useNavigate, useParams } from "react-router-dom";
 import { useNoticeDetailQuery} from "../query/NoticeDetailQuery"
 import useUserStore from "../store/userStore";
 import { useState } from "react";
+import { useNoticeDeleteMutation } from "../query/NoticeDeleteMutation";
 
 export const useNoticeDetailHook  = () => {
+    const NoticeDeleteMutation = useNoticeDeleteMutation();
     const [showDeleteModal ,setShowDeleteModal] = useState(false);
 
 
@@ -58,7 +60,7 @@ export const useNoticeDetailHook  = () => {
         //      > 함수명 : noticeDeleteApi
         //      > URI : /api/board/{postId}
         //      > Method : DELETE
-        
+        NoticeDeleteMutation.mutate(postId);
 
         alert("게시글이 삭제되었습니다.");
         closeDeleteModal();
