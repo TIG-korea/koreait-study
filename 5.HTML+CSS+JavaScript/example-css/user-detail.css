@@ -1,0 +1,112 @@
+/* 기본 리셋 */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Pretendard', sans-serif;
+    background-color: #f4f6f9;
+    display: flex;
+    flex-direction: column;
+    height: 100vh;
+}
+
+/* 상단 네비게이션 바 (공통) */
+header {
+    background-color: #1f2937;
+    color: white;
+    padding: 0 20px;
+    height: 60px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.header-user {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+}
+
+.logout-btn {
+    background-color: #ef4444;
+    color: white;
+    border: none;
+    padding: 5px 10px;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+/* 메인 컨테이너 */
+.container {
+    display: flex;
+    flex: 1;
+}
+
+/* 사이드 메뉴 (공통) */
+.side-menu {
+    background-color: #111827;
+    width: 240px;
+    padding: 20px 10px;
+}
+
+.menu-item {
+    background-color: #374151;
+    color: white;
+    text-decoration: none;
+    display: block;
+    padding: 12px 20px;
+    border-radius: 6px;
+    font-size: 14px;
+}
+
+/* 컨텐츠 영역 */
+.content-area {
+    flex: 1;
+    padding: 30px;
+}
+
+.detail-container {
+    background-color: white;
+    padding: 40px;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+    max-width: 600px;
+}
+
+.info-row {
+    display: flex;
+    margin-bottom: 20px;
+    border-bottom: 1px solid #f1f1f1;
+    padding-bottom: 15px;
+}
+
+.label {
+    width: 120px;
+    font-weight: 700;
+    color: #4b5563;
+}
+
+.value {
+    color: #1f2937;
+}
+
+.button-group {
+    margin-top: 30px;
+}
+
+.list-btn {
+    background-color: #2563eb;
+    color: white;
+    border: none;
+    padding: 10px 25px;
+    border-radius: 4px;
+    cursor: pointer;
+    font-weight: 600;
+}
+
+.list-btn:hover {
+    background-color: #1d4ed8;
+}

@@ -1,0 +1,112 @@
+/* 기본 리셋 */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Pretendard', sans-serif;
+    background-color: #f4f6f9; /* 컨텐츠 영역 배경 색상 */
+    display: flex;
+    flex-direction: column;
+    height: 100vh;
+}
+
+/* 상단 네비게이션 바 */
+header {
+    background-color: #1f2937; /* 헤더 배경 색상 */
+    color: white; /* 헤더 폰트 색상 */
+    padding: 0 20px;
+    height: 60px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.header-user {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+}
+
+.logout-btn {
+    background-color: #ef4444;
+    color: white;
+    border: none;
+    padding: 5px 10px;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+/* 전체 컨테이너 (사이드바 + 메인) */
+.container {
+    display: flex;
+    flex: 1;
+}
+
+/* 좌측 사이드 메뉴 */
+.side-menu {
+    background-color: #111827; /* 사이드 메뉴 배경 색상 */
+    width: 240px;
+    padding: 20px 10px;
+}
+
+.menu-item {
+    background-color: #374151; /* 네비게이션 메뉴 배경 색상 */
+    color: white; /* 네비게이션 폰트 색상 */
+    text-decoration: none;
+    display: block;
+    padding: 12px 20px;
+    border-radius: 6px;
+    font-size: 14px;
+}
+
+/* 우측 컨텐츠 영역 */
+.content-area {
+    flex: 1;
+    padding: 30px;
+}
+
+h2 {
+    margin-bottom: 20px;
+}
+
+.table-container {
+    background-color: white;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+th {
+    background-color: #f9fafb;
+    padding: 12px;
+    border-bottom: 1px solid #eee;
+    text-align: center;
+    color: #4b5563;
+}
+
+td {
+    padding: 15px;
+    border-bottom: 1px solid #f1f1f1;
+    text-align: center;
+}
+
+.view-btn {
+    background-color: #2563eb;
+    color: white;
+    border: none;
+    padding: 6px 16px;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+.view-btn:hover {
+    background-color: #1d4ed8;
+}

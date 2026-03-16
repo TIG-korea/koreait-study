@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>KoreaNirsa - 회원 상세</title>
+    <link rel="stylesheet" href="user-detail.css">
+</head>
+<body>
+
+    <header>
+        <div class="header-logo">KoreaNirsa</div>
+        <div class="header-user">
+            <span>admin@example.com</span>
+            <button class="logout-btn">로그아웃</button>
+        </div>
+    </header>
+
+    <div class="container">
+        <nav class="side-menu">
+            <a href="user-list.html" class="menu-item">회원 목록</a>
+        </nav>
+
+        <main class="content-area">
+            <h2>회원 상세 정보</h2>
+            
+            <div class="detail-container">
+                <div class="info-row">
+                    <span class="label">ID</span>
+                    <span class="value">1</span>
+                </div>
+                <div class="info-row">
+                    <span class="label">이름</span>
+                    <span class="value">홍길동</span>
+                </div>
+                <div class="info-row">
+                    <span class="label">이메일</span>
+                    <span class="value">hong@example.com</span>
+                </div>
+
+                <div class="button-group">
+                    <button class="list-btn" onclick="goBackToList()">목록</button>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <script src="user-detail.js"></script>
+</body>
+</html>

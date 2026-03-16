@@ -51,6 +51,7 @@ export const useNoticeEditHook = () => {
             isError,
             editForm, 
             handleChange, 
-            isLoading
+            isLoading,
+            quillRef
             };
 }

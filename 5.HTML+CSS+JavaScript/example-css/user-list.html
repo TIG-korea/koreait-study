@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>KoreaNirsa - 회원 목록</title>
+    <link rel="stylesheet" href="user-list.css">
+</head>
+<body>
+
+    <header>
+        <div class="header-logo">KoreaNirsa</div>
+        <div class="header-user">
+            <span>admin@example.com</span>
+            <button class="logout-btn">로그아웃</button>
+        </div>
+    </header>
+
+    <div class="container">
+        <nav class="side-menu">
+            <a href="#" class="menu-item active">회원 목록</a>
+        </nav>
+
+        <main class="content-area">
+            <h2>회원 목록</h2>
+            
+            <div class="table-container">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>ID</th>
+                            <th>이름</th>
+                            <th>이메일</th>
+                            <th>상세</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>1</td>
+                            <td>홍길동</td>
+                            <td>hong@example.com</td>
+                            <td>
+                                <button class="view-btn" onclick="goToDetail()">보기</button>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </main>
+    </div>
+
+    <script src="user-list.js"></script>
+</body>
+</html>
