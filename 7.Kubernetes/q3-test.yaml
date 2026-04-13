@@ -1,0 +1,23 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata: 
+  name: q3-deployment
+  labels:
+    app: q3-deployment
+
+
+spec: 
+  replicas: 2
+  selector:
+    matchLabels:
+      app: q3-deploy
+  template:
+    metadata:
+      labels:
+        app: q3-deploy
+    spec:
+      containers:
+      - name: q3-nginx-deploy-container 
+        image: nginx:1.24
+        ports:
+        - containerPort: 30001
