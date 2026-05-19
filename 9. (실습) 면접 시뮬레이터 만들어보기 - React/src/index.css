@@ -1,0 +1,15 @@
+:root {
+  --primary-color: #4f46e5;
+  --primary-hover: #4338ca;
+  --bg-color: #f3f4f6;
+  --text-main: #1f2937;
+  --text-muted: #6b7280;
+  --card-bg: #ffffff;
+}
+
+body {
+  margin: 0;
+  font-family: 'Pretendard', -apple-system, sans-serif;
+  background-color: var(--bg-color);
+  color: var(--text-main);
+}

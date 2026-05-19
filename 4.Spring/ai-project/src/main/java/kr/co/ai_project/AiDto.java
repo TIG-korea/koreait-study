@@ -9,6 +9,7 @@ public class AiDto {
 	@Setter
 	@Getter
 	public static class RequestAi {
-		private String prompt;
+		private String question;
+		private String answer;
 	}
 }

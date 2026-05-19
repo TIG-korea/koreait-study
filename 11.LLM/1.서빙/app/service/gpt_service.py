@@ -18,18 +18,16 @@ client = OpenAI(api_key=settings.OPENAI_API_KEY)
 
 
 class GPTService:
-    def generate_text(self,prompt:str, max_completion_tokens:int, temperature:float):
+    def generate_text(self, question:str, answer:str, max_completion_tokens:int, temperature:float):
         # 1. 프롬포트 전처리
         #   - 사용자가 입력한 프롬포트를 그대로 사용하지 않고
         #   시스템 규칙, 템플릿 등을 적용하여 최종 프롬프트 생성
-        final_prompt = build_prompt(prompt)
+        final_prompt = build_prompt(question, answer)
 
         # 2. OpenAI 호출
         responses = client.chat.completions.create(
             model="gpt-5.4-nano", # 사용할 모델 지정
-            messages=[  # role 기반 구조 (system / user / assistant)
-                {"role":"user", "content":final_prompt}
-            ],
+            messages=final_prompt,
             max_completion_tokens=max_completion_tokens, # 응답 길이 제한
             temperature=temperature # 창의성 제어
         )

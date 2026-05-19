@@ -60,22 +60,23 @@ def build_prompt(question:str, answer:str) -> list:
         3) 커버리지 및 깊이 (0~2점)
             -2: 질문 의도에 필요한 포인트를 빠짐없이 작성하고 깊이가 적절함
             -1: 일부만 커버하거나 깊이가 부족함
-            -0: 대부분 누락되었음
-            
+            -0: 대부분 누락되었음     
      """
+    format_guide = """
+        아레 예시 구조와 동일한 형식으로 현재 평가 대상 답변을 채점하라.
 
+        1. 총점 (10점 만점)
+        2. 기술 정확성 평가
+        3. 논리적 전개 평가
+        4. 부족한 개념
+        5. 실무 관점 개선 조언
+    """
 
-
-
-
-
-
-
-return [
-    {"role": "system", "content": role.strip()},
-    {"role": "system", "content": format_guide.strip()},
-    {"role": "system", "content": instruction.strip()},
-]
+    return [
+        {"role": "system", "content": role.strip()},
+        {"role": "system", "content": format_guide.strip()},
+        {"role": "user", "content": instruction.strip()}
+    ]
 
 
 

@@ -23,7 +23,7 @@ public class AiController {
 		
 		if (loginUser == null) return ResponseEntity.status(401).body("로그인이 필요합니다.");
 		
-		String result = aiService.callFastApi(loginUser.getUserId(), req.getPrompt());
+		String result = aiService.callFastApi(loginUser.getUserId(), req.getAnswer(), req.getQuestion());
 		
 		return ResponseEntity.ok(result);
 		

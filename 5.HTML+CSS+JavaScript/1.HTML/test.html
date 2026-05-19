@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <script src="https://cdn.iamport.kr/v1/iamport.js"></script>
+</head>
+<body>
+  <button onclick="pay()">카카오페이 테스트 결제</button>
+
+  <script>
+    function pay() {
+      IMP.init('imp44032228');
+
+      IMP.request_pay({
+        pg: 'kakaopay.TC0ONETIME',  // << 변경: pg에 CID 포함
+        pay_method: 'kakaopay',
+        merchant_uid: 'order_' + Date.now(),
+        name: '1개월 플랜 테스트',
+        amount: 100,
+        buyer_email: 'test@test.com',
+        buyer_name: '테스트',
+      }, function(response) {
+        if (response.success) {
+          alert('imp_uid: ' + response.imp_uid);
+          console.log('imp_uid:', response.imp_uid);
+          console.log('merchant_uid:', response.merchant_uid);
+        } else {
+          alert('실패: ' + response.error_msg);
+          console.log(response);
+        }
+      });
+    }
+  </script>
+</body>
+</html>

@@ -1,17 +1,18 @@
 from fastapi import FastAPI
-from app.api import gpt_router
+from bookapp.api import book_router
 from fastapi.middleware.cors import CORSMiddleware
+from app.api import gpt_router
 
 app = FastAPI(
-    title="FastAPI GPT 서비스",
-    version="1.0.0"
+    # title="FastAPI GPT 서비스",
+    # version="1.0.0"
 )
 
 
 # CORS 허용 설정
 origins = [
-    "http://localhost:8080",
-    "http://127.0.0.1:8080",
+    "http://localhost:5173",
+    "http://127.0.0.1:5173",
 ]
 
 
@@ -23,8 +24,9 @@ app.add_middleware(
     allow_headers=["*"],
 )
 
+app.include_router(book_router.router)
 app.include_router(gpt_router.router)
 
 @app.get("/")
 def read_root():
-    return {"message": "GPT API 서버가 실행중입니다."}
+    return {"message": "TEST"}

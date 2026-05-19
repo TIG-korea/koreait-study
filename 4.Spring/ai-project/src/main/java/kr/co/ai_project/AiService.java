@@ -26,7 +26,7 @@ public class AiService {
 	 */
 	
 	
-	public String callFastApi(String userId, String prompt) {
+	public String callFastApi(String userId, String answer, String question) {
 		// 1. 요청할 URL 설정
 		String  url = "http://localhost:8000/gpt/generate";
 		
@@ -45,7 +45,8 @@ public class AiService {
 		
 		// 3. 요청 Body 생성 
 		Map<String, String> body = new HashMap<>();
-		body.put("prompt", prompt);
+		body.put("answer", answer);
+		body.put("question", question);
 		
 		// 4. HTTP 요청 객체 생성 
 		// -> HttpEntity는 위에서 만든 HEader + Body를 하나로 묶은 객체 
